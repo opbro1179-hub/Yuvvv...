@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yuvraj ❤️ Riya Valentine</title>
+
+<style>
+body {
+  margin:0;
+  font-family:"Comic Sans MS", cursive;
+  background: radial-gradient(circle, #ffe6f2, #ff99cc);
+  text-align:center;
+  overflow-x:hidden;
+}
+
+/* START HEART */
+#startHeart {
+  font-size:120px;
+  margin-top:100px;
+  cursor:pointer;
+  animation: pulse 1.2s infinite;
+}
+@keyframes pulse {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.15);}
+  100% {transform: scale(1);}
+}
+
+/* Main box */
+.box {
+  display:none;
+  background: rgba(255,255,255,0.95);
+  padding:40px;
+  width:90%;
+  max-width:720px;
+  margin:40px auto;
+  border-radius:25px;
+  box-shadow:0 0 40px rgba(255,0,128,0.35);
+  font-size:26px;
+  text-align:left;
+  position:relative;
+}
+
+/* Characters */
+.chars {
+  display:flex;
+  justify-content:space-around;
+  margin-bottom:20px;
+}
+.chars img {
+  width:160px;
+  height:160px;
+  object-fit:cover;
+  border-radius:50%;
+  border:4px solid pink;
+}
+
+/* Inputs */
+input {
+  width:80%;
+  font-size:22px;
+  padding:14px;
+  margin-top:10px;
+  border-radius:12px;
+  border:1px solid #aaa;
+}
+
+/* Buttons */
+button {
+  padding:18px 30px;
+  font-size:24px;
+  border:none;
+  border-radius:18px;
+  background:hotpink;
+  color:white;
+  cursor:pointer;
+  margin:15px;
+  transition:0.25s;
+}
+button:hover {transform:scale(1.08); background:deeppink;}
+
+/* Floating hearts */
+.heart {
+  position:fixed;
+  bottom:-20px;
+  font-size:28px;
+  animation: floatUp 6s linear infinite;
+}
+@keyframes floatUp {from {transform:translateY(0);opacity:1;} to {transform:translateY(-110vh);opacity:0;}}
+
+/* Butterflies */
+.butterfly {
+  position:fixed;
+  font-size:35px;
+  animation: fly 6s linear infinite;
+}
+@keyframes fly {from {left:-50px; top:80%;} to {left:110%; top:10%;}}
+
+/* Final message */
+.finalMsg {
+  font-size:22px;
+  line-height:2;
+  padding:20px;
+  text-align:left;
+}
+</style>
+</head>
+<body>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- START -->
+<div id="startScreen">
+  <div id="startHeart">❤️</div>
+  <h2>Click the Heart 💌</h2>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+
+  <div class="box" id="step0">
+    <h1>🌸 Hinata & Naruto Valentine 🌸</h1>
+    <div class="chars">
+      <img src="hinata.png">
+      <img src="naruto.png">
+    </div>
+    <p>Click "Next" to start the love quest 💖</p>
+    <button onclick="nextStep(0)">Next 💌</button>
+  </div>
+
+  <div class="box" id="step1">
+    <h2>Hinata asks 💖</h2>
+    <p>“Tumhare liye perfect love ka matlab kya hai?”</p>
+    <input id="ans1" placeholder="Type your answer...">
+    <button onclick="checkAnswer(1)">Next ➝</button>
+    <p id="compliment1"></p>
+  </div>
+
+  <div class="box" id="step2">
+    <h2>Hinata asks 🌷</h2>
+    <p>“Agar tum apne special person ko ek line bol sako, toh kya bolte?”</p>
+    <input id="ans2" placeholder="Type your answer...">
+    <button onclick="checkAnswer(2)">Next ➝</button>
+    <p id="compliment2"></p>
+  </div>
+
+  <div class="box" id="step3">
+    <h2>Hinata asks 😏</h2>
+    <p>“Dream date choose karni ho toh mere sath karoge ya Riya ke sath?”</p>
+    <input id="ans3" placeholder="Type your answer...">
+    <button onclick="checkAnswer(3)">Next ➝</button>
+    <p id="compliment3"></p>
+  </div>
+
+  <div class="box" id="step4">
+    <h2>Naruto Challenge 🍜</h2>
+    <p>Yuvraj... Will you be Riya’s Forever Valentine? ❤️</p>
+    <button onclick="yesClicked()">YES 💖</button>
+    <button onclick="alert('No not allowed 😭❤️')">NO 😤</button>
+  </div>
+
+  <div class="box" id="finalStep">
+    <h1>🎁 Final Valentine Surprise 🎁</h1>
+    <p>Hinata says: “You unlocked Riya’s heart message...” 💌</p>
+    <div class="finalMsg">
+Meree pyaare babyy mere yuv 👀❤️<br><br>
+I LOVE YOU isliye nahi ki tum smart ho...<br>
+main tumse isliye pyar karti hun kyunki tumhara nature sabse pyara hai 😭❤️<br>
+tumhari caring aur efforts mujhe bahut special feel karvate hain 🤌❤️<br><br>
+Jitni comfortable main tumhare sath hun, utni kisi ke sath nahi 😭❤️<br>
+Dil se bahut zyada pyaar karti hun main tumse 🫠👉🏻👈🏻❤️<br><br>
+Valentine toh bas ek bahana tha… mujhe toh bas moka chahiye tha tumpe pyaar barsane ka 🤣❤️<br><br>
+Thank you so much mere husband 👀❤️<br>
+Mmmmmwaaaaaahhh 😘❤️
+    </div>
+    <h2>Happy Valentine’s Day my Yuv ❤️🌸</h2>
+  </div>
+
+</div>
+
+<script>
+// START HEART CLICK
+document.getElementById("startHeart").onclick=function(){
+  document.getElementById("music").play();
+  createHearts();
+  createButterflies();
+  document.getElementById("startScreen").style.display="none";
+  document.getElementById("step0").style.display="block";
+};
+
+// Hearts
+function createHearts(){
+  for(let i=0;i<20;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+  }
+}
+
+// Butterflies
+function createButterflies(){
+  for(let i=0;i<6;i++){
+    let b=document.createElement("div");
+    b.className="butterfly";
+    b.innerHTML="🦋";
+    b.style.top=Math.random()*80+"%";
+    document.body.appendChild(b);
+  }
+}
+
+// Step navigation
+function nextStep(step){
+  document.getElementById("step"+step).style.display="none";
+  document.getElementById("step"+(step+1)).style.display="block";
+}
+
+// Compliments based on answer
+function checkAnswer(step){
+  let val=document.getElementById("ans"+step).value.trim().toLowerCase();
+  let compliment="";
+  if(val.length>15) compliment="Naruto claps! 👏 Wow, amazing answer 😍";
+  else if(val.length>5) compliment="Hinata smiles 😘 Nice!";
+  else compliment="Naruto frowns 😳 Not enough 😅";
+
+  document.getElementById("compliment"+step).innerText=compliment;
+  setTimeout(()=>{nextStep(step);},800);
+}
+
+// Final YES
+function yesClicked(){
+  nextStep(4);
+  setTimeout(()=>{nextStep("finalStep");},1000);
+}
+
+</script>
+</body>
+      </html>
